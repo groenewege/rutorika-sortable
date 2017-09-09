@@ -99,9 +99,9 @@ trait SortableTrait
             $isMoveForward = $oldPosition < $newPosition;
 
             if ($isMoveForward) {
-                $this->queryBetween($oldPosition, $newPosition)->decrement($sortableField);
+                $this->queryBetween($oldPosition, $newPosition)->withoutGlobalScopes()->decrement($sortableField);
             } else {
-                $this->queryBetween($newPosition, $oldPosition)->increment($sortableField);
+                $this->queryBetween($newPosition, $oldPosition)->withoutGlobalScopes()->increment($sortableField);
             }
 
             $this->setAttribute($sortableField, $this->getNewPosition($isMoveBefore, $isMoveForward, $newPosition));
